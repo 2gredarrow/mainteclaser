@@ -367,28 +367,32 @@
     <script src="js/grayscale.min.js"></script>
     <script>
     $("#notifyMe").submit(function(evt) {
-        // var resp = $.ajax({
-        //     type: "POST",
-        //     url: "http://mntcapi.altervista.org/mntcapi.php",
-        //     data: $("#notifyMe").serialize(),
-        //     error: function(err) {
-        //         $("#name").val("");
-        //         $("#email").val("");
-        //         $("#message").val("");
-        //         $("#okmail").show("slow");
-        //         setTimeout(function() {
-        //             $("#okmail").hide("slow");
-        //         }, 5000);
-        //     },
-        //     dataType: "application/json"
-        // });
+        var resp = $.ajax({
+            type: "POST",
+            url: "http://mntcapi.altervista.org/sendmail.php",
+            data: $("#notifyMe").serialize(),
+            success:function(data)
+            {
+                console.log(data);
+            },
+            error: function(err) {
+                $("#name").val("");
+                $("#email").val("");
+                $("#message").val("");
+                $("#okmail").show("slow");
+                setTimeout(function() {
+                    $("#okmail").hide("slow");
+                }, 5000);
+            },
+            dataType: "application/json"
+        });
 
-        // resp.done(function() {
-        //     $("#name").val("");
-        //     $("#email").val("");
-        //     $("#message").val("");
+        resp.done(function() {
+            $("#name").val("");
+            $("#email").val("");
+            $("#message").val("");
 
-        // });
+        });
         evt.preventDefault();
     });
 
