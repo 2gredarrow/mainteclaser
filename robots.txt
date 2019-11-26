@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /php.ini
+
+User-agent: *
+Disallow: /*/login.phpi
+
+Sitemap: https://www.mainteclaser.it/sitemap.xml
+
