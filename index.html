@@ -319,10 +319,12 @@
                             <textarea name="message" id="message" placeholder="Messaggio" class="form-control"
                                 required></textarea>
                         </div>
-                        <div class="alert alert-success form-group" style="display:none" id="okmail">
+                        <div class="alert alert-success form-group" style="display:none" id="OKmail">
                             <strong>Perfetto!</strong> Messaggio Inviato.
                         </div>
-
+                        <div class="alert alert-danger form-group" style="display:none" id="KOmail">
+                            <strong>Attenzione!</strong> Messaggio Non Inviato.
+                        </div>
                         <button class="btn btn-danger btn btn-danger btn-lg btn-block" id="submit_btno">Invia
                             Messaggio</i></button>
 
@@ -367,6 +369,24 @@
     <script src="js/grayscale.min.js"></script>
     <script>
     $("#notifyMe").submit(function(evt) {
+
+        $.ajax({
+            type: "POST",
+            url: "https://mntcapi.altervista.org/sendmail.php",
+            data: $("#notifyMe").serialize()
+        }).then(f =>{
+
+            $(`#${f}mail`).show("slow");
+
+            $("#name").val("");
+            $("#mail").val("");
+            $("#message").val("");
+            setTimeout(function() {
+                    $(`#${f}mail`).hide("slow");
+                }, 5000);
+        });
+
+
         var resp = $.ajax({
             type: "POST",
             url: "http://mntcapi.altervista.org/sendmail.php",
@@ -377,7 +397,7 @@
             },
             error: function(err) {
                 $("#name").val("");
-                $("#email").val("");
+                $("#mail").val("");
                 $("#message").val("");
                 $("#okmail").show("slow");
                 setTimeout(function() {
@@ -388,9 +408,7 @@
         });
 
         resp.done(function() {
-            $("#name").val("");
-            $("#email").val("");
-            $("#message").val("");
+
 
         });
         evt.preventDefault();
