@@ -5,14 +5,14 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-22767875-1"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    gtag('config', 'UA-22767875-1');
+        gtag('config', 'UA-22767875-1');
     </script>
 
     <meta charset="utf-8">
@@ -25,7 +25,7 @@
 
     <META name="robots" content="index,follow" />
     <title>Maintec Laser - Technic Marking</title>
-<h1 style="display:none">Maintec Laser - Incisioni Tecniche</h1>
+    <h1 style="display:none">Maintec Laser - Incisioni Tecniche</h1>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -39,14 +39,14 @@
     <!-- Custom styles for this template -->
     <link href="css/grayscale.css" rel="stylesheet">
     <style>
-    #cookie_policy {
-        background: black;
-        z-index: -1;
-        display: none;
-        position: fixed;
-        padding: 5px 10px 5px 10px;
+        #cookie_policy {
+            background: black;
+            z-index: -1;
+            display: none;
+            position: fixed;
+            padding: 5px 10px 5px 10px;
 
-    }
+        }
     </style>
 </head>
 
@@ -368,197 +368,199 @@
     <!-- Custom scripts for this template -->
     <script src="js/grayscale.min.js"></script>
     <script>
-    $("#notifyMe").submit(function(evt) {
+        $("#notifyMe").submit(function (evt) {
 
-        $.ajax({
-            type: "POST",
-            url: "https://mntcapi.altervista.org/sendmail.php",
-            data: $("#notifyMe").serialize()
-        }).then(f =>{
+            $.ajax({
+                type: "POST",
+                url: "https://mntcapi.altervista.org/sendmail.php",
+                data: $("#notifyMe").serialize()
+            }).then(f => {
 
-            $(`#${f}mail`).show("slow");
+                $(`#${f}mail`).show("slow");
 
-            $("#name").val("");
-            $("#mail").val("");
-            $("#message").val("");
-            setTimeout(function() {
-                    $(`#${f}mail`).hide("slow");
-                }, 5000);
-        });
-
-
-        var resp = $.ajax({
-            type: "POST",
-            url: "http://mntcapi.altervista.org/sendmail.php",
-            data: $("#notifyMe").serialize(),
-            success:function(data)
-            {
-                console.log(data);
-            },
-            error: function(err) {
                 $("#name").val("");
                 $("#mail").val("");
                 $("#message").val("");
-                $("#okmail").show("slow");
-                setTimeout(function() {
-                    $("#okmail").hide("slow");
+                setTimeout(function () {
+                    $(`#${f}mail`).hide("slow");
                 }, 5000);
-            },
-            dataType: "application/json"
+            });
+
+
+            var resp = $.ajax({
+                type: "POST",
+                url: "http://mntcapi.altervista.org/sendmail.php",
+                data: $("#notifyMe").serialize(),
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (err) {
+                    $("#name").val("");
+                    $("#mail").val("");
+                    $("#message").val("");
+                    $("#okmail").show("slow");
+                    setTimeout(function () {
+                        $("#okmail").hide("slow");
+                    }, 5000);
+                },
+                dataType: "application/json"
+            });
+
+            resp.done(function () {
+
+
+            });
+            evt.preventDefault();
         });
 
-        resp.done(function() {
+        $(document).ready(function ($) {
+            var revealClass = '.animated';
+            var targetClass = '.has-scroll-reveal:not(' + revealClass + ')';
+            var offset = 50; // Offset from bottom of viewport in pixels.
 
+            var winHeight = $(window).height();
 
-        });
-        evt.preventDefault();
-    });
+            // Recalc height of window in case of resize
+            $(window).bind('resizeEnd', function () {
+                winHeight = $(window).height();
+            });
 
-    $(document).ready(function($) {
-        var revealClass = '.animated';
-        var targetClass = '.has-scroll-reveal:not(' + revealClass + ')';
-        var offset = 50; // Offset from bottom of viewport in pixels.
-
-        var winHeight = $(window).height();
-
-        // Recalc height of window in case of resize
-        $(window).bind('resizeEnd', function() {
-            winHeight = $(window).height();
-        });
-
-        // Fire when page loads
-        triggerAnimation(revealClass, targetClass, offset, winHeight);
-
-        // Also fire on scroll
-        $(window).on('scroll', function() {
+            // Fire when page loads
             triggerAnimation(revealClass, targetClass, offset, winHeight);
-        }); // window.on('scroll')
 
-    }); // document.ready
+            // Also fire on scroll
+            $(window).on('scroll', function () {
+                triggerAnimation(revealClass, targetClass, offset, winHeight);
+            }); // window.on('scroll')
 
-    function triggerAnimation(revealClass, targetClass, offset, winHeight) {
+        }); // document.ready
 
-        // Get current scrollPos
-        var trigger = $(window).scrollTop() + winHeight - offset;
+        function triggerAnimation(revealClass, targetClass, offset, winHeight) {
 
-        // Loop through elements we're affecting
-        $(targetClass).each(function() {
-            var elementOffset = $(this).offset().top;
+            // Get current scrollPos
+            var trigger = $(window).scrollTop() + winHeight - offset;
 
-            if (elementOffset < trigger) {
+            // Loop through elements we're affecting
+            $(targetClass).each(function () {
+                var elementOffset = $(this).offset().top;
 
-                $(this).addClass(revealClass.replace('.', ''));
+                if (elementOffset < trigger) {
+
+                    $(this).addClass(revealClass.replace('.', ''));
+                }
+            });
+
+        }
+
+        /*
+         * ResizeEnd
+         *
+         * Example:
+         * $(window).bind('resizeEnd', function() {
+         *  console.log('resize ended 500ms ago');
+         * });
+         */
+        $(window).resize(function () {
+
+            if (this.resizeTO) clearTimeout(this.resizeTO);
+
+            this.resizeTO = setTimeout(function () {
+                $(this).trigger('resizeEnd');
+            }, 500);
+
+        });
+
+        $(document).ready(() => {
+            if (document.cookie.split('cookie_accepted=true').length < 2) {
+                $('#cookie_policy').css('z-index', 2000);
+                $('#cookie_policy').css('display', 'flex');
+                $(window).on('scroll', function () {
+                    hideCookie();
+                });
             }
         });
 
-    }
-
-    /*
-     * ResizeEnd
-     *
-     * Example:
-     * $(window).bind('resizeEnd', function() {
-     *  console.log('resize ended 500ms ago');
-     * });
-     */
-    $(window).resize(function() {
-
-        if (this.resizeTO) clearTimeout(this.resizeTO);
-
-        this.resizeTO = setTimeout(function() {
-            $(this).trigger('resizeEnd');
-        }, 500);
-
-    });
-
-    $(document).ready(() => {
-        if (document.cookie.split('cookie_accepted=true').length < 2) {
-            $('#cookie_policy').css('z-index', 2000);
-            $('#cookie_policy').css('display', 'flex');
-            $(window).on('scroll', function() {
-                hideCookie();
-            });
-        }
-    });
-
-    $('#close').click(() => {
-        hideCookie()
-    });
-
-    function hideCookie() {
-        $('#cookie_policy').hide();
-        var d = new Date();
-        d.setTime(d.getTime() + (3650 * 24 * 60 * 60 * 1000));
-        document.cookie = "cookie_accepted=true;expires=" + d.getUTCDate() + ";path=/";
-    }
-
-    $(document).ready(function() {
-        $.ajax({
-        url: "https://mntcapi.altervista.org/mntcapi.php"
-    }).then(function(data) {
-         let res=JSON.parse(data);
-         res.forEach(element => {
-                  $("#clientList").append(`<div class="slide"><img src="${element.image_url}" alt="${element.client_name}"></div>`)
-             });
-    
-             $('.customer-logos').slick({
-            slidesToShow: 6,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 1000,
-            arrows: false,
-            dots: false,
-            pauseOnHover: false,
-            responsive: [{
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 4
-                }
-            }, {
-                breakpoint: 520,
-                settings: {
-                    slidesToShow: 3
-                }
-            }]
+        $('#close').click(() => {
+            hideCookie()
         });
-    
-    });
-      
-    });
+
+        function hideCookie() {
+            $('#cookie_policy').hide();
+
+            var now = new Date();
+            var time = now.getTime();
+            var expireTime = time + 100000 * 360000;
+            now.setTime(expireTime);
+            document.cookie = 'cookie_accepted=true;expires=' + now.toGMTString() + ';path=/';
+        }
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "https://mntcapi.altervista.org/mntcapi.php"
+            }).then(function (data) {
+                let res = JSON.parse(data);
+                res.forEach(element => {
+                    $("#clientList").append(`<div class="slide"><img src="${element.image_url}" alt="${element.client_name}"></div>`)
+                });
+
+                $('.customer-logos').slick({
+                    slidesToShow: 6,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 1000,
+                    arrows: false,
+                    dots: false,
+                    pauseOnHover: false,
+                    responsive: [{
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 4
+                        }
+                    }, {
+                        breakpoint: 520,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    }]
+                });
+
+            });
+
+        });
     </script>
     <style>
-    .has-scroll-reveal {
-        opacity: 0;
-        animation-play-state: paused;
-    }
-
-    .animated {
-        -webkit-animation-duration: 1.5s;
-        animation-duration: 1.5s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
-        animation-play-state: running;
-    }
-
-    .fadeInUp {
-        -webkit-animation-name: fadeInUp;
-        animation-name: fadeInUp;
-    }
-
-
-    @keyframes fadeInUp {
-        from {
+        .has-scroll-reveal {
             opacity: 0;
-            -webkit-transform: translate3d(0, 2.5rem, 0);
-            transform: translate3d(0, 2.5rem, 0);
+            animation-play-state: paused;
         }
 
-        to {
-            opacity: 1;
-            -webkit-transform: none;
-            transform: none;
+        .animated {
+            -webkit-animation-duration: 1.5s;
+            animation-duration: 1.5s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            animation-play-state: running;
         }
-    }
+
+        .fadeInUp {
+            -webkit-animation-name: fadeInUp;
+            animation-name: fadeInUp;
+        }
+
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                -webkit-transform: translate3d(0, 2.5rem, 0);
+                transform: translate3d(0, 2.5rem, 0);
+            }
+
+            to {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none;
+            }
+        }
     </style>
 </body>
 
