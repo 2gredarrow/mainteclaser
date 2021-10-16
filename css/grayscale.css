@@ -11,8 +11,8 @@
 #mainNav .navbar-toggler {
   font-size: 80%;
   padding: 0.75rem;
-  color: #64a19d;
-  border: 1px solid #64a19d;
+  color: #647ba1;
+  border: 1px solid #647ba1;
 }
 
 #mainNav .navbar-toggler:focus {
@@ -71,15 +71,15 @@
     border-bottom: 0.25rem solid transparent;
   }
   #mainNav.navbar-shrink .nav-link:hover {
-    color: #64a19d;
+    color: #647ba1;
   }
   #mainNav.navbar-shrink .nav-link:active {
     color: #467370;
   }
   #mainNav.navbar-shrink .nav-link.active {
-    color: #64a19d;
+    color: #647ba1;
     outline: none;
-    border-bottom: 0.25rem solid #64a19d;
+    border-bottom: 0.25rem solid #647ba1;
   }
 }
 
@@ -182,7 +182,7 @@
 @media (min-width: 992px) {
   .projects-section .featured-text {
     padding: 0 0 0 2rem;
-    border-left: 0.5rem solid #64a19d;
+    border-left: 0.5rem solid #647ba1;
   }
 }
 
@@ -196,7 +196,7 @@
     padding: 5rem;
   }
   .projects-section .project-text hr {
-    border-color: #64a19d;
+    border-color: #647ba1;
     border-width: .25rem;
     width: 30%;
   }
@@ -204,11 +204,11 @@
 
 .signup-section {
   padding: 10rem 0;
-  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url("../workers.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
+  /* background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url("../workers.jpg"); */
+  /* background-position: center; */
+  /* background-repeat: no-repeat; */
+  /* background-attachment: scroll; */
+  /* background-size: cover; */
 }
 
 .signup-section .form-inline input {
@@ -228,7 +228,7 @@
 
 .contact-section .card {
   border: 0;
-  border-bottom: 0.25rem solid #64a19d;
+  border-bottom: 0.25rem solid #647ba1;
 }
 
 .contact-section .card h4 {
@@ -239,7 +239,7 @@
 }
 
 .contact-section .card hr {
-  border-color: #64a19d;
+  border-color: #647ba1;
   border-width: 0.25rem;
   width: 3rem;
 }
@@ -272,7 +272,7 @@ body {
 }
 
 a {
-  color: #64a19d;
+  color: #647ba1;
 }
 
 a:focus, a:hover {
@@ -285,13 +285,25 @@ a:focus, a:hover {
 }
 
 .bg-primary {
-  background-color: #64a19d !important;
+  background-color: #647ba1 !important;
 }
 
 .text-primary {
-  color: #64a19d !important;
+  color: #647ba1 !important;
 }
 
 footer {
   padding: 5rem 0;
+}
+
+.bg-two
+{
+  background-color: #222;
+}
+
+.slick-track > div{
+  border: 3px solid #343a40!important;
+  min-height: 280px;
+  border-radius: 20px;
+
 }
